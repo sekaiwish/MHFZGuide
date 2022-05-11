@@ -10,6 +10,12 @@ nav {
   background: red;
   margin-right: 1em;
   overflow: hidden;
+  border: 3px solid brown;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
 }
 
 li, li a {
@@ -37,7 +43,22 @@ li ul a {
   padding: 5px;
 }
 
+nav ul hr {
+  margin: 0;
+}
+
 main {
   width: 50%;
-  background: blue;
+  background: #ddd;
+  border: 3px solid brown;
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+  margin-left: 2em;
+  margin-right: 2em;
 }
