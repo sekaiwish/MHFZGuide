@@ -16,6 +16,7 @@
             <li><a href="#2">Downloading</a></li>
             <li><a href="#3">Installing the client</a></li>
             <li><a href="#4">Installing the server</a></li>
+            <li><a href="#5">Updating the server</a></li>
           </ul>
         </li>
         <li><a href="house.html">House & AI Companions</a></li>
@@ -42,21 +43,71 @@
       </ul>
     </nav>
     <main>
-      <!--img src="img/mhfz.png" alt="Monster Hunter Frontier Z English Edition"-->
+      <div class="logo"><img src="img/mhfz.png" alt="Monster Hunter Frontier Z English Edition"></div>
       <h1>Installation Guide</h1>
       <h2 id="1">Preparation</h2>
-      <p>As the game is no longer in service you must download the entire game as a 6GB archive through the links in the following section. You should decide now whether you want
-      to join a public server or host your own. The advantage of the latter being that you are able to control your savefile and edit parameters, the disadvantage being that you
-      are solely responsible for any issues that occur. If you choose to join a public server then you may skip the server installation guide after completing the client installation.</p>
+      <p>As the game is no longer in service, you must download the entire game as a 6GB archive through the links in the following section. You should decide now whether you want
+      to join a public server or host your own. The advantage of the latter being that you are able to control your savefile and edit certain server parameters, the disadvantage being that you
+      are solely responsible for any issues that occur. If you choose to join a public server, then you may skip the server installation guide after completing the client installation.</p>
+      <p>This guide will only cover installation on Windows 10+ computers, installation is possible on all types of computers but require much more effort. Feel free to ask us on Discord
+      for advice on installing on such systems.</p>
       <h2 id="2">Downloading</h2>
-      <p>The client is available for download on <a href="https://drive.google.com/file/d/1SJKWSPGlvUt795YSVePfDDxybwD9yRsz/view">Google Drive</a>.</p>
-      <p>The server (Erupe) is included with the client download.</p>
+      <p>The client is available for download on <a href="https://drive.google.com/file/d/1SJKWSPGlvUt795YSVePfDDxybwD9yRsz/view">Google Drive</a> or
+      <a href="https://1fichier.com/?pbja1soxfajj72gj96v0">1fichier</a>.</p>
+      <p>The server (Erupe) is included with the client download, and has server updates 1 though 5 already installed.</p>
       <p>Updates to both the client and the server will be available for download <a href="https://drive.google.com/drive/u/0/folders/1ejhsua309mBXbVeCL8oAZNE2NdbUPEpe">here</a>. Check
       in often for the lastest updates, or join our <a href="#">Discord</a> for notifications when these updates are released!</p>
       <h2 id="3">Installing the client</h2>
-      <p></p>
+      <h3>MHFZ</h3>
+      <p>Before doing anything, open Windows Security > Virus & threat protection > Virus & threat protection settings > Add or remove exclusions, and add the folder where you are
+      planning to install MHFZ to. This is to prevent Windows from deleting your game when it is a false-positive. Now, go back to Virus & threat protection settings and temporarily disable
+      Real-time protection. This is because when you extract the client from the zip, Windows will temporarily store it somewhere you cannot exclude and it will be flagged as a false-positive
+      there instead.</p>
+      <p>Now, go ahead and extract the client files into the destination folder. Once the process is complete, you can enable Real-time protection again.</p>
+      <p>If mhf.exe is not in the folder after doing this, Windows has deleted your client and you will have to try again.</p>
+      <h3>Hosts</h3>
+      <p>You will have to edit your hosts file, located in <span>C:\Windows\System32\drivers\etc\</span>. Since the file is in a protected location you will have to use a program like Notepad++
+      to edit it. Alternatively, copy the file somewhere else such as your Desktop, edit it there and then copy it back and overwrite the protected one.</p>
+      <p>For self-hosting you would add the following line at the bottom of the file;</p>
+      <p><span>127.0.0.1 cog-members.mhf-z.jp www.capcom-onlinegames.jp srv-mhf.capcom-networks.jp</span></p>
+      <p>If connecting to a public server, you will have to replace the IP address with one that the host will provide you.</p>
+      <h3>Locale Emulator</h3>
+      <p>To avoid unreadable text appearing in the game, it is recommended to use <a href="https://github.com/xupefei/Locale-Emulator/releases/latest">Locale Emulator</a>. Just extract the
+      zip archive somewhere, probably a new folder in Program Files, and run LEInstaller.exe to have it available for MHFZ.</p>
+      <p>When you want to launch the game, right click mhf.exe and click Locale Emulator > Run in Japanese.</p>
+      <p>If you want to automatically launch the game with LE every time, right click mhf.exe > Create shortcut, right click the new shortcut and open
+      Properties. Change the Target the following, adjusting to your own setup;</p><p><span>"C:\[Path to LE]\LEProc.exe" "C:\[Path to MHFZ]\mhf.exe"</span></p>
+      <h3>Google Lens</h3>
+      <p>If you come across certain screens that you would like to read, install Google Translate on your phone and use the camera option to automatically translate any text in the game.</p>
       <h2 id="4">Installing the server</h2>
-      <p></p>
+      <h3>Preface</h3>
+      <p>It is highly recommended to use SephVII's <a href="https://youtu.be/e5wyOJ_R1go?t=433">video guide</a> for this process as it is very technical and it is easy to get confused.</p>
+      <h3>Go Programming Language</h3>
+      <p>Download Go from the <a href="https://go.dev/doc/install">official website</a> and install it.</p>
+      <h3>PostgreSQL</h3>
+      <p>Download PostgreSQL from <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">EnterpriseDB</a>, using the Windows x86-64 build. Please do not install
+      PostgreSQL on a drive other than the default, this is known to cause issues. Please remember both passwords! Also, you do not need Stack Builder.</p>
+      <p>Included with the MHFZ server files should be Erupe-Backup.sql and Road Shop Items.csv, extract these into a folder somewhere. PostgreSQL comes with a convienient client called
+      pgAdmin, search for it in Windows and open it. Enter your Master Password from earlier to unlock pgAdmin. First, go to File > Preferences > Binary paths and scroll down to PostgreSQL 14.
+      Click the three dots and locate your PostgreSQL bin folder which should be at <span>C:\Program Files\PostgreSQL\14\bin</span>.</p>
+      <p>In pgAdmin, under Servers you should have a default called PostgreSQL 14, right click that and click Create > Database, name it <span>erupe</span>. Right click the newly created database
+      and click Restore, click the folder icon next to Filename and select your Erupe-Backup.sql then click Restore.</p>
+      <p>Now, expand Databases > erupe > Schemas > public > Tables, right click normal_shop_items > Import/Export data, switch it to Import mode. Click the three dots next to Filename and select
+      your Road Shop Items.csv, then press OK.</p>
+      <h3>Erupe</h3>
+      <p>First, extract your Erupe folder from the download somewhere. In the Erupe folder, if you do not see a savedata folder, create it. Now open Quests.7z which should be included with the
+      archive, and extract the bin folder into the Erupe folder, this will probably take a long time.</p>
+      <p>Open the config.json file in Erupe, ensure your host_ip is set correctly. This will be your external IP if you are hosting for others, 127.0.0.1 if you are self-hosting. Scroll down to
+      Entries and you will see more IP address fields, make sure these are all set to the same address as host_ip. Go back up to the Database section and set the password from before.</p>
+      <p>You should now be able to open Run Erupe.bat, wait a minute or so for the program to build and download required libraries and it should be good to go.</p>
+      <h2 id="5">Updating the server</h2>
+      <h3>Preface</h3>
+      <p>This process will have different requirements per update, this is a general overview of common actions made to update your server.</p>
+      <h3>Updating your database schema / Using the pgAdmin Query Tool</h3>
+      <p>Open pgAdmin, expand Servers > PostgreSQL > Databases and click on erupe. Now click Tools > Query Tool, updates will either contain required code in the Readme or will come with
+      a Schema.sql file, extract the schema file and drag it into the Query Tool, then press Execute (F5).</p>
+      <h3>Rebuilding Erupe.exe</h3>
+      <p>Delete your old Erupe.exe to prevent issues overwriting, open CMD and use the CD command to browse to your Erupe directory, run the command <span>go build</span> to build a new Erupe.exe.</p>
     </main>
   </body>
 </html>

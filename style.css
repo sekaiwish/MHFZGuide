@@ -7,6 +7,7 @@ body {
 
 nav {
   width: 20%;
+  height: 100%;
   background: red;
   margin-right: 1em;
   overflow: hidden;
@@ -18,15 +19,19 @@ nav ul {
   margin: 0;
 }
 
+a {
+  color: blue;
+  text-decoration: none;
+}
+
 li, li a {
   list-style: none;
   width: 100%;
   display: inline-block;
-  text-decoration: none;
   color: black;
 }
 
-li a:hover {
+a:hover, li a:hover {
   text-decoration: underline;
 }
 
@@ -38,9 +43,10 @@ nav ul li a {
   padding: 5px;
 }
 
-li ul a {
+nav ul li ul a {
   background: #bbb;
   padding: 5px;
+  padding-left: 15px;
 }
 
 nav ul hr {
@@ -53,6 +59,12 @@ main {
   border: 3px solid brown;
 }
 
+main img {
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+
 h1, h2, h3 {
   text-align: center;
 }
@@ -61,4 +73,12 @@ p {
   text-align: justify;
   margin-left: 2em;
   margin-right: 2em;
+}
+
+p span {
+  font-family: monospace;
+  font-size: 1.2em;
+  background-color: #bbb;
+  padding-left: .2em;
+  padding-right: .2em;
 }
